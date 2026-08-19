@@ -478,5 +478,34 @@
       document.getElementById('contractModal').classList.add('hidden');
     }
   </script>
-</body>
+<script>
+  const form = document.getElementById('creditForm');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // Stop page from refreshing
+
+    // 1. Get the form inputs
+    const data = {
+      dealerName: document.getElementById('dealerName').value,
+      caDealerLicense: document.getElementById('caDealerLicense').value,
+      fein: document.getElementById('fein').value,
+      fleetSize: document.getElementById('fleetSize').value,
+      email: document.getElementById('email').value
+    };
+
+    // 2. Send to your backend URL
+    const response = await fetch('YOUR_BACKEND_URL_HERE', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+
+    // 3. Show result
+    if (response.ok) {
+      alert('Submitted successfully!');
+    } else {
+      alert('Something went wrong.');
+    }
+  });
+</script></body>
 </html>
